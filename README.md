@@ -36,3 +36,7 @@ az functionapp create --resource-group ai-skincare-reccommender --consumption-pl
 func azure functionapp publish ai-assistant-function
 
 az functionapp config appsettings set --name ai-assistant-function --resource-group ai-skincare-reccommender --settings AZURE_OPENAI_ENDPOINT="https://ai-skincare-reccommender-instance.openai.azure.com/" AZURE_OPENAI_API_KEY="REMOVED"
+
+curl -X POST https://ai-assistant-function.azurewebsites.net/api/openai-assistant \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "ตกงานต้องแจ้งที่ไหน"}'

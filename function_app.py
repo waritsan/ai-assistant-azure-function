@@ -76,14 +76,9 @@ def openai_assistant_http_trigger(req: func.HttpRequest) -> func.HttpResponse:
             messages = client.beta.threads.messages.list(
                 thread_id=thread.id
             )
-            # Get the latest assistant message
-            assistant_message = None
-            for m in messages.data:
-                if m.role == "assistant":
-                    assistant_message = m.content[0].text.value if m.content else None
-                    break
+            # Return the full messages object for debugging
             return func.HttpResponse(
-                json.dumps({"response": assistant_message}),
+                json.dumps({"messages": [m.model_dump() for m in messages.data]}),
                 mimetype="application/json",
                 status_code=200
             )
