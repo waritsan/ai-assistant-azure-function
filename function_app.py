@@ -24,7 +24,7 @@ def load_local_settings():
 app = func.FunctionApp()
 
 @app.function_name(name="OpenAIAssistantHttpTrigger")
-@app.route(route="openai-assistant", methods=["POST"])
+@app.route(route="openai-assistant", methods=["POST"], auth_level=func.AuthLevel.ANONYMOUS)
 def openai_assistant_http_trigger(req: func.HttpRequest) -> func.HttpResponse:
     try:
         # Get prompt from request body
