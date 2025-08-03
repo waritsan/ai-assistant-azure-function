@@ -44,4 +44,4 @@ az functionapp config appsettings set --name ai-assistant-function --resource-gr
 
 curl -X POST https://ai-assistant-function.azurewebsites.net/api/openai-assistant \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "ตกงานต้องแจ้งที่ไหน"}'
+  -d '{"prompt": "Hello"}'
