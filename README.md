@@ -33,15 +33,17 @@ curl -X POST http://localhost:7071/api/openai-assistant \
   -H "Content-Type: application/json" \
   -d '{"prompt": "hello"}'
 
-## Create
+## On Azure
+# Create Function
 az functionapp create --resource-group ai-skincare-reccommender --consumption-plan-location eastus --runtime python --runtime-version 3.9 --functions-version 4 --name ai-assistant-function --storage-account skinstorage123
 
-## Deploy
-func azure functionapp publish ai-assistant-function
-
-## Set env
+# Set env
 az functionapp config appsettings set --name ai-assistant-function --resource-group ai-skincare-reccommender --settings AZURE_OPENAI_ENDPOINT="https://ai-skincare-reccommender-instance.openai.azure.com/" AZURE_OPENAI_API_KEY="REMOVED"
 
+# Deploy
+func azure functionapp publish ai-assistant-function
+
+# Test
 curl -X POST https://ai-assistant-function.azurewebsites.net/api/openai-assistant \
   -H "Content-Type: application/json" \
   -d '{"prompt": "Hello"}'
