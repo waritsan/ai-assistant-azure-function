@@ -41,7 +41,7 @@ def openai_assistant_http_trigger(req: func.HttpRequest) -> func.HttpResponse:
         # Create assistant
         assistant = client.beta.assistants.create(
             model="gpt-35-turbo",  # replace with model deployment name.
-            instructions="",
+            instructions="Respond in the same language as the user's question.",
             tools=[{"type": "file_search"}],
             tool_resources={"file_search": {"vector_store_ids": ["vs_sgjvlbgxltrP9k58KcCsHGFw"]}},
             temperature=1,
